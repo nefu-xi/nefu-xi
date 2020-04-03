@@ -1,6 +1,6 @@
 /**
  * @description error 404 路由
- * @author 双越老师
+ * @author Xi
  */
 
 const router = require('koa-router')()
@@ -15,4 +15,4 @@ router.get('*', async (ctx, next) => {
     await ctx.render('404')
 })
 
-module.exports = (router)
+module.exports = router
