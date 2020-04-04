@@ -1,6 +1,6 @@
 /**
  * @description 存储配置
- * @author 双越老师
+ * @author XI
  */
 
 const { isProd } = require('../utils/env')
