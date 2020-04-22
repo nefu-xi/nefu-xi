@@ -2,10 +2,28 @@
  * @description 数据格式化
  * @author XI
  */
-
-const { DEFAULT_PICTURE } = require('../conf/constant')
+const { DEFAULT_PICTURE, REG_FOR_AT_WHO } = require('../conf/constant')
 const { timeFormat } = require('../utils/dt')
 
+
+/**
+ * 
+ * @param {Object} obj 
+ */
+function _formatContent(obj){
+
+    obj.contentFormat=obj.content
+
+
+    obj.contentFormat=obj.contentFormat.replace(
+        REG_FOR_AT_WHO,
+        (marchStr,nickName,userName) =>{
+            return `<a href="./profile/${userName}">@${nickName}</a>`
+        }
+    )
+    return obj
+
+}
 /**
  * 用户默认头像
  * @param {Object} obj 用户对象
@@ -56,10 +74,13 @@ function formatBlog(list) {
 
     if (list instanceof Array) {
         // 数组
-        return list.map(_formatDBTime)
+        return list.map(_formatDBTime).map(_formatContent)
     }
     // 对象
-    return _formatDBTime(list)
+    let result=list
+    result = _formatDBTime(result)
+    result = _formatContent(result)
+    return result
 }
 
 module.exports = {
