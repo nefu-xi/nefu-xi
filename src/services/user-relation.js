@@ -5,7 +5,7 @@
 
 const { User, UserRelation } = require('../db/model/index')
 const { formatUser } = require('./_format')
-
+const Sequelzie = require('sequelize')
 /**
  * 获取关注该用户的用户列表，即该用户的粉丝
  * @param {number} followerId 被关注人的 id
@@ -20,7 +20,10 @@ async function getUsersByFollower(followerId) {
             {
                 model: UserRelation,
                 where: {
-                    followerId
+                    followerId,
+                    userId:{
+                        [Sequelzie.Op.ne]:followerId
+                    }
                 }
             }
         ]
@@ -37,7 +40,46 @@ async function getUsersByFollower(followerId) {
         userList
     }
 }
+/**
+ * get follower
+ * @param {number} userId 
+ * @param {number} followerId 
+ */
+async function getFollwersByUser(userId){
+    const result = await User.findAndCountAll({
+        order:[
+            ['id','desc']
+        ],
+        include:[
+            {
+                model:User,
+                attributes:['id','userName','nickName','picture']
 
+            }
+        ],
+        where:{
+            userId,
+            followerId:{
+                [Sequelzie.Op.ne]:userId
+
+            }
+        }
+    })
+
+    let userList = result.rows.map(row => row.dataValues)
+
+    userList = userList.map(item =>{
+        let user = item.user
+        user = user.dataValues
+        user = formatUser(user)
+        return user
+    })
+
+    return{
+        count:result,
+        userList
+    }
+}
 /**
  * 添加关注关系
  * @param {number} userId 用户 id

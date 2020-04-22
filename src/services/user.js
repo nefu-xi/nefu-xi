@@ -5,6 +5,7 @@
 
 const { User } = require('../db/model/index')
 const { formatUser } = require('./_format')
+const {addFollower} = require('./user-relation')
 
 /**
  * 获取用户信息
@@ -50,7 +51,11 @@ async function createUser({ userName, password, gender = 3, nickName }) {
         nickName: nickName ? nickName : userName,
         gender
     })
-    return result.dataValues
+    const data = result.dataValues
+
+    addFollower(data.id,data.id)
+
+    return data
 }
 
 /**
