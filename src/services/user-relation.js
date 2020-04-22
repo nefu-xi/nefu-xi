@@ -1,11 +1,12 @@
 /**
  * @description 用户关系 services
- * @author XI
+ * @author 双越老师
  */
 
 const { User, UserRelation } = require('../db/model/index')
 const { formatUser } = require('./_format')
-const Sequelzie = require('sequelize')
+const Sequelize = require('sequelize')
+
 /**
  * 获取关注该用户的用户列表，即该用户的粉丝
  * @param {number} followerId 被关注人的 id
@@ -21,8 +22,8 @@ async function getUsersByFollower(followerId) {
                 model: UserRelation,
                 where: {
                     followerId,
-                    userId:{
-                        [Sequelzie.Op.ne]:followerId
+                    userId: {
+                        [Sequelize.Op.ne]: followerId
                     }
                 }
             }
@@ -40,46 +41,47 @@ async function getUsersByFollower(followerId) {
         userList
     }
 }
-/**
- * get follower
- * @param {number} userId 
- * @param {number} followerId 
- */
-async function getFollwersByUser(userId){
-    const result = await User.findAndCountAll({
-        order:[
-            ['id','desc']
-        ],
-        include:[
-            {
-                model:User,
-                attributes:['id','userName','nickName','picture']
 
+/**
+ * 获取关注人列表
+ * @param {number} userId userId
+ */
+async function getFollowersByUser(userId) {
+    const result = await UserRelation.findAndCountAll({
+        order: [
+            ['id', 'desc']
+        ],
+        include: [
+            {
+                model: User,
+                attributes: ['id', 'userName', 'nickName', 'picture']
             }
         ],
-        where:{
+        where: {
             userId,
-            followerId:{
-                [Sequelzie.Op.ne]:userId
-
+            followerId: {
+                [Sequelize.Op.ne]: userId
             }
         }
     })
+    // result.count 总数
+    // result.rows 查询结果，数组
 
     let userList = result.rows.map(row => row.dataValues)
 
-    userList = userList.map(item =>{
+    userList = userList.map(item => {
         let user = item.user
         user = user.dataValues
         user = formatUser(user)
         return user
     })
 
-    return{
-        count:result,
+    return {
+        count: result.count,
         userList
     }
 }
+
 /**
  * 添加关注关系
  * @param {number} userId 用户 id
@@ -111,5 +113,6 @@ async function deleteFollower(userId, followerId) {
 module.exports = {
     getUsersByFollower,
     addFollower,
-    deleteFollower
+    deleteFollower,
+    getFollowersByUser
 }

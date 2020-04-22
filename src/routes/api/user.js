@@ -70,16 +70,16 @@ router.post('/logout', loginCheck, async (ctx, next) => {
     ctx.body = await logout(ctx)
 })
 
-router.get('/getAtList',loginCheck,async (ctx,next) =>{
-    const {id:userId} = ctx.session.userInfo
+// 获取 at 列表，即关注人列表
+router.get('/getAtList', loginCheck, async (ctx, next) => {
+    const { id: userId } = ctx.session.userInfo
     const result = await getFollowers(userId)
-    const {followerList} = result.data
-    const list = followerList.map(user =>{
+    const { followersList } = result.data
+    const list = followersList.map(user => {
         return `${user.nickName} - ${user.userName}`
-
     })
-
+    // 格式如 ['张三 - zhangsan', '李四 - lisi', '昵称 - userName']
     ctx.body = list
 })
 
-module.exports = (router)
+module.exports = router
