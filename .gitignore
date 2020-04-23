@@ -29,3 +29,9 @@ node_modules
 dump.rdb
 
 uploadFiles
+
+
+/node_modules
+npm-debug.log
+.DS_Store
+/*.env
