@@ -1,31 +1,31 @@
-<%- include('layout/header', { title: '微博 - 注册', isNarrow: true })%>
+<%- include('layout/header', { title: 'Blog - register', isNarrow: true })%>
 
 <h1>注册</h1>
 <% if (locals.isLogin) { %>
-    <p><%= locals.userName%> 您已成功登录，请直接访问<a href="/">首页</a></p>
+    <p><%= locals.userName%> Signed in<a href="/">Dashboard</a></p>
 <% } else { %>
     <form>
         <div class="form-group">
-            <input type="text" class="form-control" id="input-username" placeholder="请输入用户名">
+            <input type="text" class="form-control" id="input-username" placeholder="userName">
             <small id="span-username-info" class="form-text text-muted"></small>
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" id="input-password" placeholder="请输入密码">
+            <input type="password" class="form-control" id="input-password" placeholder="password">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" id="input-password-repeat" placeholder="重新输入密码">
+            <input type="password" class="form-control" id="input-password-repeat" placeholder="password">
             <small id="span-password-repeat-info" class="form-text text-muted"></small>
         </div>
         <div class="form-group">
             <select class="form-control" id="select-gender">
-                <option value="1">男</option>
-                <option value="2">女</option>
-                <option value="3">保密</option>
+                <option value="1">male</option>
+                <option value="2">female</option>
+                <option value="3">NA</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary" id="btn-submit">注册</button>
+        <button type="submit" class="btn btn-primary" id="btn-submit">Sign up</button>
         &nbsp;
-        <a href="/login">已有账号，返回登录>></a>
+        <a href="/login">return log in>></a>
     </form>
 
     <script>
@@ -55,10 +55,10 @@
                     }, function(err, data) {
                         $spanUserNameInfo.show()
                         if (err) {
-                            $spanUserNameInfo.text('用户名可用')
+                            $spanUserNameInfo.text('success username')
                             isUserNameExist = false
                         } else {
-                            $spanUserNameInfo.text('用户名已存在！')
+                            $spanUserNameInfo.text('username alread existed！')
                             isUserNameExist = true
                         }
                     })
@@ -76,10 +76,10 @@
                     var passwordRepeat = $inputPasswordRepeat.val()
                     $spanPasswordRepeatInfo.show()
                     if (password === passwordRepeat) {
-                        $spanPasswordRepeatInfo.text('两次密码一致')
+                        $spanPasswordRepeatInfo.text('correct')
                         isPasswordSame = true
                     } else {
-                        $spanPasswordRepeatInfo.text('两次密码不一致！')
+                        $spanPasswordRepeatInfo.text('wrong！')
                         isPasswordSame = false
                     }
                 }, 500)
@@ -92,11 +92,11 @@
 
                 // 验证
                 if (isUserNameExist) {
-                    alert('用户名已存在')
+                    alert('username already existed')
                     return
                 }
                 if (!isPasswordSame) {
-                    alert('两次密码不一致')
+                    alert('not correct')
                     return
                 }
 
@@ -114,7 +114,7 @@
                         alert(err)
                         return
                     }
-                    alert('注册成功，请登录')
+                    alert('signed up please log in')
                     location.href = '/login'
                 })
             })

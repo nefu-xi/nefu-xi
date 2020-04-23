@@ -1,19 +1,19 @@
-<%- include('layout/header', { title: '微博 - 登录', isNarrow: true })%>
+<%- include('layout/header', { title: 'Blog - Signin', isNarrow: true })%>
 
-<h1>登录</h1>
+<h1>Sign in</h1>
 <% if (locals.isLogin) { %>
-    <p><%= locals.userName%> 您已成功登录，请直接访问<a href="/">首页</a></p>
+    <p><%= locals.userName%> Already Sign In<a href="/">DashBoard</a></p>
 <% } else { %>
     <form>
         <div class="form-group">
-            <input type="text" class="form-control" id="input-username" placeholder="请输入用户名">
+            <input type="text" class="form-control" id="input-username" placeholder="username">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" id="input-password" placeholder="请输入密码">
+            <input type="password" class="form-control" id="input-password" placeholder="password">
         </div>
-        <button type="submit" class="btn btn-primary" id="btn-submit">登录</button>
+        <button type="submit" class="btn btn-primary" id="btn-submit">Sign in</button>
         &nbsp;
-        <a href="/register">注册账号>></a>
+        <a href="/register">Sign up>></a>
     </form>
 
     <script>
@@ -36,7 +36,7 @@
                         return
                     }
                     // 跳转到指定 url 或首页
-                    var redirectUrl = $.query.get('url') || '/'
+                    // var redirectUrl = $.query.get('url') || '/'
                     location.href = '/'
 
               

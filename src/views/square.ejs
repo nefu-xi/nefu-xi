@@ -1,14 +1,14 @@
-<%- include('layout/header', { title: '微博 - 广场', isNav: true, list: true })%>
+<%- include('layout/header', { title: 'Blog - Trending', isNav: true, list: true })%>
 
 <div class="container margin-top-20">
     <div class="row">
         <!-- 左侧 -->
         <div class="col-8">
-            <h4 class="margin-bottom-20 padding-bottom-10 border-bottom">微博广场</h4>
+            <h4 class="margin-bottom-20 padding-bottom-10 border-bottom">Trending</h4>
 
             <% if (blogData.isEmpty) { %>
                 <div>
-                    <center>暂无数据</center>
+                    <center>No dat</center>
                 </div>
             <% } else { %>
                 <!-- 微博列表 -->
