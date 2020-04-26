@@ -7,7 +7,7 @@ Tech Stack:
 
 Koa2, ejs, MySQL, Sequelize, Redis, session, Jest, jwt
 
-Architecture of Project
+Architecture:
 
 ![Blog-Diagram](https://user-images.githubusercontent.com/62654631/80154702-24f35b00-858e-11ea-8cfd-2015139d4d17.png)
 
