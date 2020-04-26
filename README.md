@@ -4,6 +4,7 @@ Welcome to play around using the below Heroku link!
 https://safe-coast-26671.herokuapp.com/login?url=%2F
 
 Tech Stack:
+
 Koa2, ejs, MySQL, Sequelize, Redis, session, Jest, jwt
 
 Architecture of Project
@@ -11,6 +12,7 @@ Architecture of Project
 ![Blog-Diagram](https://user-images.githubusercontent.com/62654631/80154702-24f35b00-858e-11ea-8cfd-2015139d4d17.png)
 
 Feature:
+
 Designed the server side structure, API, routers and database system to meet the proposed requirements.
 
 Developed the user management module which consists of duplication check, registration & login, information encryption & validation, CRUD operations and file management.
