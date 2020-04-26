@@ -3,15 +3,15 @@ Welcome to play around using the below Heroku link!
 
 https://safe-coast-26671.herokuapp.com/login?url=%2F
 
-Tech Stack:
+**Tech Stack:**
 
 Koa2, ejs, MySQL, Sequelize, Redis, session, Jest, jwt
 
-Architecture:
+**Architecture:**
 
 ![Blog-Diagram](https://user-images.githubusercontent.com/62654631/80154702-24f35b00-858e-11ea-8cfd-2015139d4d17.png)
 
-Feature:
+**Feature:**
 
 Designed the server side structure, API, routers and database system to meet the proposed requirements.
 
